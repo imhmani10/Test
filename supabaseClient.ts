@@ -1,0 +1,12 @@
+
+import { createClient } from '@supabase/supabase-js';
+
+// Access environment variables directly so Vite can replace them at build time
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+if (!supabaseUrl || !supabaseAnonKey) {
+  console.error("Missing Supabase URL or Key. Please check your .env file.");
+}
+
+export const supabase = createClient(supabaseUrl || '', supabaseAnonKey || '');
